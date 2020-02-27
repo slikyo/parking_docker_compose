@@ -1,0 +1,13 @@
+{% extends "base.jinja2" %}
+{% block content %}
+{#    <div id="r-result">#}
+{#        Search:<input type="text" id="suggestId" size="20" value="百度" style="width:150px;"/>#}
+{#    </div>#}
+{#    <div id="searchResultPanel" style="border:1px solid #C0C0C0;width:150px;height:auto; display:none;"></div>#}
+    <div id="my_map" style="top: 100px">
+    </div>
+
+    <button id="upload" class="btn btn-primary" type="submit" style="position: relative; top: 650px;">Upload</button>
+    <button id="clear" class="btn btn-primary" type="submit" style="position: relative; top: 650px;">Clear Data</button>
+    <script src="/static/js/web_data.js"></script>
+{% endblock %}
