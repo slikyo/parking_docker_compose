@@ -16,10 +16,8 @@ services:
       #      MONGODB_USERNAME: flaskuser
       #      MONGODB_PASSWORD: your_mongodb_password
       MONGODB_HOSTNAME: mongodb
-#    ports:
-#      - 5000:5000
-    expose:
-      - ${FLASK_PORT}
+    ports:
+      - ${FLASK_PORT_OUT}:${FLASK_PORT_IN}
     volumes:
       - static_volume:/city-sensing/src/static
     depends_on:

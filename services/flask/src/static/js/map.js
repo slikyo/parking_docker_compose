@@ -11,6 +11,15 @@ $(document).ready(function () {
     var map = new BMap.Map("my_map");
     map.centerAndZoom(new BMap.Point(114.218316, 22.692316), 20);
     map.enableAutoResize();
+    map.enableScrollWheelZoom(true);
+
+    // 添加比例尺
+    map.addControl(new BMap.NavigationControl({
+        anchor: BMAP_ANCHOR_TOP_RIGHT,
+        type: BMAP_NAVIGATION_CONTROL_SMALL
+    }));
+
+
     // ============================================================================================================
     var ac = new BMap.Autocomplete(    //建立一个自动完成的对象
         {
@@ -69,7 +78,14 @@ $(document).ready(function () {
     map.addEventListener("dragend", function showInfo() {
         get_spots()
     });
-
+    // 放大缩小监听
+    map.addEventListener("zoomend", function showInfo() {
+        get_spots()
+    });
+    // 移动监听
+    map.addEventListener("moveend", function showInfo() {
+        get_spots()
+    });
     // ============================================================================================================
 
     function fill_form(i, loc, speed, time, length, depth, slots) {
@@ -102,9 +118,10 @@ $(document).ready(function () {
 
     socket.on('get_spots', function (msg) {
         json_msg = JSON.parse(msg)
-
+        console.log("total: "+ json_msg.length+ " spots")
+        // draw spots
         for (let i = 0; i < json_msg.length; i++) {
-            console.log(i)
+
             let lng = json_msg[i].loc[0]
             let lat = json_msg[i].loc[1]
             let time = json_msg[i].upload_time.$date
@@ -119,9 +136,9 @@ $(document).ready(function () {
                 var marker2 = new BMap.Marker(pt, {icon: myIcon});  // 创建标注
                 map.addOverlay(marker2);
             }
-
-            if (i > json_msg.length - 4) {
-                fill_form(i + 3 - json_msg.length, lng + ', ' + lat, speed, utc_time, space_length, space_depth, i + 1)
+            // fill table
+            if (i < 3) {
+                fill_form(i, lng + ', ' + lat, speed, utc_time, space_length, space_depth, json_msg.length - i)
             }
         }
     })
