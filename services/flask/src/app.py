@@ -7,7 +7,7 @@ from src.common.database import Database
 
 app = Flask(__name__)
 app.config.from_object('src.config')
-socketio = SocketIO(app, async_mode=None)
+socketio = SocketIO(app, async_mode=None, cors_allowed_origins='*')
 Database.initialize()
 
 

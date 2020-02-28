@@ -9,7 +9,7 @@ services:
     image: city-sensing:v1
     restart: unless-stopped
     environment:
-      APP_DEBUG: ${FLASK_DEBUG}
+      APP_DEBUG: ${FLASK_DEBUG_IN}
       APP_PORT: ${FLASK_PORT}
       DOMAIN_NAME: ${FLASK_DOMAIN_NAME}
       #      MONGODB_DATABASE: flaskdb
