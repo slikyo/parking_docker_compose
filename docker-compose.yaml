@@ -10,7 +10,7 @@ services:
     restart: unless-stopped
     environment:
       APP_DEBUG: ${FLASK_DEBUG_IN}
-      APP_PORT: ${FLASK_PORT}
+      APP_PORT: ${FLASK_PORT_IN}
       DOMAIN_NAME: ${FLASK_DOMAIN_NAME}
       #      MONGODB_DATABASE: flaskdb
       #      MONGODB_USERNAME: flaskuser
