@@ -2,11 +2,11 @@ version: '3'
 services:
 
   flask:
-    build:
-      context: ./services/flask
-      dockerfile: Dockerfile
+#    build:
+#      context: ./services/flask
+#      dockerfile: Dockerfile
     container_name: city-sensing-flask
-    image: city-sensing:v1
+    image: slikyo/citysensing:v2.3
     restart: unless-stopped
     environment:
       APP_DEBUG: ${FLASK_DEBUG_IN}
@@ -18,8 +18,8 @@ services:
       MONGODB_HOSTNAME: mongodb
     ports:
       - ${FLASK_PORT_OUT}:${FLASK_PORT_IN}
-    volumes:
-      - static_volume:/city-sensing/src/static
+#    volumes:
+#      - ${FLASK_HTML_SRC}:/city-sensing/src/
     depends_on:
       - mongodb
     networks:
