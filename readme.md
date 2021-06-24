@@ -1,1 +1,1 @@
-This one can be used to deploy on web directly.
+This one can be used to deploy directly.
